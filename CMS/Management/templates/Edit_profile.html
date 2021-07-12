@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+  
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  
+  <style> 
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #E0E1E1;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #2C3E50;
+  color: white;
+}
+
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 25px;
+  cursor: pointer;
+  background-color: #2C3E50;
+  color: white;  
+  border: none;
+}
+
+
+
+#main {
+  transition: margin-left .5s;
+  
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <div id="main">
+  <button class="openbtn" onclick="openNav()">☰</button>
+  <a class="navbar-brand" href="{%url 'Management:home' %}">CMS<span class="sr-only">(current)</span></a>
+    <ul class="navbar-nav float-right" style="padding-left: 1100px ;  text-transform: uppercase">
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <p>WELCOME,
+            <strong>{{u_name}}</strong>
+          </p>
+        </a>
+      </li>
+    </ul>
+</nav>
+{{request.session.login_status}}
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  {% for b in  %}
+  <a class="nav-link active" href="{%url 'Management:EditProfile' b.id %}">Profile<span class="sr-only">(current)</span></a>
+  <a class="nav-link" href="{%url 'Management:home' %}">Home<span class="sr-only">(current)</span></a> 
+  <a class="nav-link" href="{%url 'Management:category' %}">Complain <span class="sr-only">(current)</span></a>
+  <a class="nav-link" href="{%url 'Management:feedback'%}">Feedback<span class="sr-only">(current)</span></a>
+  <a class="nav-link " href="{%url 'Management:logout'%}">Logout</a>
+</div> 
+<div class="row">
+  <div class="col-lg-2 col-md-2">&nbsp;</div>
+  <div class="col-lg-8 col-md-8 col-sm-12">
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p}}
+      <input type="submit" class="btn btn-danger" value="Save">
+    </form>
+  </div>
+  <div class="col-lg-2 col-md-2">
+  </div>
+</div>
+    <script>
+      function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+      }
+    </script>
+</body>

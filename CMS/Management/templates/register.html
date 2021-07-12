@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/new.css' %}">
+      
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+      
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <style>
+     
+    </style>
+    </head>
+<body class="bg">
+<div>
+    
+    <div class="row">
+      <div class="col-sm-4 col-lg-4 "></div>
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="form"> 
+        <form method="POST">
+          <h2 class="text-center">Create new account</h2>
+              {% csrf_token %}
+            <label>
+              <p class="label-txt">ENTER YOUR NAME</p>
+              <input type="text" class="input" name="u_name" required>
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
+            </label>
+            <label>
+              <p class="label-txt">ENTER YOUR EMAIL</p>
+              <input type="text" class="input" name="u_email" required>
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
+            </label>
+            <label>
+              <p class="label-txt">ENTER YOUR PASSWORD</p>
+              <input type="PASSWORD" class="input" name="u_password" required>
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
+            </label>
+            <label>
+              <p class="label-txt">ENTER MOBILE NUMBER</p>
+              <input type="text" class="input" name="u_mobile" required>
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
+            </label>
+            <label>
+              <p class="label-txt">ENTER YOUR CITY</p>
+              <input type="text" class="input" name="u_city" required>
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
+            </label>
+            <label>
+              <p class="label-txt">ENTER PIN</p>
+              <input type="text" class="input" name="u_pin" required>
+              <div class="line-box">
+                <div class="line"></div>
+              </div>
+            </label>
+            <button type="submit">Submit</button>
+          </form>
+          </div>
+      </div>
+    </div>
+</div>
+</body>
+</html>
